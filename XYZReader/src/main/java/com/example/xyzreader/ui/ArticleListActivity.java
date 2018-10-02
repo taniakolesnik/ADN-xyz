@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -40,10 +42,13 @@ public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = ArticleListActivity.class.toString();
-    private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
-
+    private Parcelable mListState;
+    private static final String STATE_KEY = "state_key";
+    private StaggeredGridLayoutManager sglm;
+    private final static int LANDSCAPE_COLUMN_COUNT = 3;
+    private final static int PORTRAIT_COLUMN_COUNT = 2;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
     // Use default locale format
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
@@ -55,8 +60,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setEnabled(false);
@@ -67,6 +70,18 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         if (savedInstanceState == null) {
             refresh();
+        }
+
+        int columnCount;
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            columnCount = LANDSCAPE_COLUMN_COUNT;
+        } else {
+            columnCount = PORTRAIT_COLUMN_COUNT;
+        }
+        sglm = new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
+        if (savedInstanceState!=null){
+            sglm.onRestoreInstanceState(mListState);
         }
     }
 
@@ -85,6 +100,13 @@ public class ArticleListActivity extends AppCompatActivity implements
     protected void onStop() {
         super.onStop();
         unregisterReceiver(mRefreshingReceiver);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mListState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(STATE_KEY, mListState);
     }
 
     private boolean mIsRefreshing = false;
@@ -113,9 +135,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         Adapter adapter = new Adapter(cursor);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
-        int columnCount = getResources().getInteger(R.integer.list_column_count);
-        StaggeredGridLayoutManager sglm =
-                new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
     }
 
