@@ -7,5 +7,19 @@
     <dimen name="fab_elevation">4dp</dimen>
     <dimen name="fab_press_translation_z">6dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_height">56dp</dimen>
+    <dimen name="fab_width">56dp</dimen>
+
+    <dimen name="photo_container_height">200dp</dimen>
+    <dimen name="list_photo_container_height">100dp</dimen>
+
+    <dimen name="article_title_size_large">24sp</dimen>
+    <dimen name="article_title_size_medium">16sp</dimen>
+    <dimen name="article_body_size">14sp</dimen>
+
+    <dimen name="elevation_small">8dp</dimen>
+
+    <dimen name="max_lines_list_title">4</dimen>
+    <dimen name="max_lines_list_subtitle">2</dimen>
 
 </resources>

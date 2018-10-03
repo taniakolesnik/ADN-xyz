@@ -22,7 +22,7 @@
                 android:layout_gravity="center_horizontal"
                 android:maxWidth="@dimen/detail_card_max_width"
                 android:background="@android:color/white"
-                android:elevation="4dp"
+                android:elevation="@dimen/elevation_small"
                 android:layout_marginTop="200dp">
 
                 <include layout="@layout/meta_bar"/>
@@ -38,8 +38,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="@dimen/fab_width"
+        android:layout_height="@dimen/fab_height"
         android:src="@drawable/ic_share"
         android:elevation="@dimen/fab_elevation"
         android:contentDescription="@string/action_share" />

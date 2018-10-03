@@ -10,4 +10,4 @@
     android:paddingBottom="@dimen/detail_body_bottom_margin"
     android:textColor="@color/textColorPrimary"
     android:textColorLink="@color/theme_accent"
-    android:textSize="16sp" />
+    android:textSize="@dimen/article_body_size" />
