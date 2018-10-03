@@ -17,7 +17,6 @@
 
 <resources>
     <color name="photo_placeholder">#FFFFFF</color>
-
     <color name="theme_primary">#795548</color>
     <color name="theme_primary_dark">#5D4037</color>
     <color name="theme_accent">#FF9800</color>
