@@ -7,6 +7,7 @@
 <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="130dp"
+        android:elevation="@dimen/elevation_small"
         android:background="@color/theme_primary">
 
     <android.support.design.widget.CollapsingToolbarLayout
