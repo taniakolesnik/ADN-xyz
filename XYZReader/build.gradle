@@ -37,4 +37,5 @@ dependencies {
     implementation "com.android.support:support-core-utils:$androidSupportVersion"
     implementation "com.android.support:design:$androidSupportVersion"
     implementation files('libs/volley.jar')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
