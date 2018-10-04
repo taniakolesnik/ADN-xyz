@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
         app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-        android:elevation="8dp"
+        android:elevation="@dimen/appbar_elevation"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <include layout="@layout/main_toolbar"/>
